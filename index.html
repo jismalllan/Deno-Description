@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Document</title>
+    <style>
+        img {
+            max-width: 100%;
+            width: 500px;
+        }
+        table {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Deno</h1>
+    <h2>目录</h2>
+    <ol>
+        <li><a href="#a1">作者生平</a></li>
+        <li><a href="#a2">作者贡献</a></li>
+        <li><a href="#a3">Deno优劣</a></li>
+    </ol>
+    <hr>
+    <h2>作者：Ryan Dahl</h2>
+    <a href="ryan1.jpeg"><img src="ryan1.jpeg" alt="Ryan的照片"></a>
+    <h2 id="a1">作者生平</h2>
+    <p>Ryan Dahl出生在美国加利福尼亚洲的圣地亚哥。他的家庭环境很好，小的时候，他的父母就给他买了一台Apple IIc电脑。因为从小就接触了电脑，Ryan
+        Dahl很早就对科技有着浓厚的兴趣，这为他以后的学习和工作都种下了一颗种子，这颗种子时刻影响着他不断地去学习，不断地去改变，不断地去追寻成功。
+    </p>
+    <p>Ryan
+        Dahl大学里学的是数学，貌似学编程好的人，数学都学得很好。读完大学的他有读了硕士，学习的依然是数学，学习的是代数拓补学，他把它称作抽象和美丽。但是对于一生都要做数学研究，他感到厌倦。于是他没有继续去读数学博士。而是离开了学术界，开始找工作，加入了社会这个大家庭。
+    </p>
+    <p>Ryan Dahl 第一份工是在一家滑雪板公司做网站。在此期间，他就发明了影响前端界的重量级语言nodejs。和其它语言的发明者不同的是，Ryan
+        Dahl仅仅为nodejs研发了4年之后，他就离开了。因为他觉得有更重要的工作等着他去完成。因此，2012年的时候，他就退出了nodejs项目组。
+    </p>
+    <p>离开了nodejs项目组之后，他就加入了谷歌，在谷歌他研究的主要方向就是机器学习里面的图像着色和超解像技术。虽然取得了一定的成就，但是Ryan
+        Dahl认为现在的机器学习还很简单，离真正的人工智能还有着十万八千里。但是这并不妨碍人们去提升机器学习的技术，因为他相信，总有一天，人工智能会变得越来越完善。
+    </p>
+    <p>就在人们已经认为Ryan再也不会理会nodejs的时候，他在2018年js开发者会上分享了他的心得。他列出了自己设计nodejs的十个错误。为了弥补这些错误，他研发了一个新的项目，这个项目就是Deno。他将底层的代码从c++迁移到了rust。并且抛弃了nodejs的许多遗留问题，从那一刻起，我们知道，我们的nodejs之父回来了。
+    </p>
+    <h2 id="a2">作者贡献</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>功能</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>node.js</td>
+                <td>严格来讲不是一门语言，是一个基于Chrome V8引擎的JavaScript运行环境</td>
+            </tr>
+            <tr>
+                <td>http_parse</td>
+                <td>一个解析http协议的工具，有部分内容来自于nginx</td>
+            </tr>
+            <tr>
+                <td>libuv</td>
+                <td>基于异步事件的封装，比 libevent/libev 更容易使用，跨平台性更好，代码部分来源libev和nginx</td>
+            </tr>
+            <tr>
+                <td>deno</td>
+                <td>为 JavaScript 和 TypeScript 提供了一种简单、现代化和运行时安全的环境，使用 V8 并使用 Rust 构建</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <a href="2.jpg"><img src="2.jpg" alt="ryan在js开发者大会"></a>
+    <h2>Ryan列出设计Node.js的十个错误</h2>
+    <ul>
+        <li>没有坚持使用Promise</li>
+        <li>没有注重安全性</li>
+        <li>没有从GYP构建系统转到GN</li>
+        <li>继续使用GYP，没有提供FFI</li>
+        <li>package.json以及依赖了npm</li>
+        <li>在任何地方都可以require("somemodule")</li>
+        <li>package.json 提供了错误的module概念</li>
+        <li>设计了软件界黑洞node_modules</li>
+        <li>require("module")可以不写.js</li>
+        <li>index.js</li>
+    </ul>
+    <h2 id="a3">Deno的优势</h2>
+    <p>
+        内置tsc引擎，可以直接运行ts代码( 还是要先编译成JS
+        )。这就不用你每次编写完ts代码还要去手动去编译了，而且也不用再去搭建什么ts-node之类的了。它的内部会根据文件后缀名判断，如果是.ts后缀名，就先调用TS编译器，将其编译成 Java；如果是.js后缀名，就直接传入
+        V8 引擎运行。
+    </p>
+    <p>
+        由于是用Rust语言开发的，Rust原生支持 WebAssembly，所以它也能直接运行WebAssembly。它的异步操作不使用libuv这个库，而是使用Rust的Tokio库来实现event
+        loop。那么为什么不像Node一样用C++而是选择用Rust呢？主要是因为Rust提供了很多现成的模块，对于Deno来说，可以节约很多开发时间。也许是看到了Rust提供了很多现成模块，Deno也决定在自己的项目中添加许多现成模块。
+    </p>
+    <p>
+        Deno具有安全控制，默认情况下脚本不具有读写权限。如果脚本未授权，就读写文件系统或网络，会报错。想要读写文件系统的话必须使用要参数，显式打开权限才可以。Ryan在总结Node的十个错误时曾说：V8引擎本身有很好的sandbox架构，但是有时候Node本身却没有好好利用，例如有可以直接读取Memory的例子，或者linter可以直接使用网络功能等的漏洞。从npm下载了一个包就任由他运行了，这其中存在着很大的安全隐患。
+    </p>
+    <p>
+        Deno 支持 Web API，尽量跟浏览器保持一致。它提供 window 这个全局对象，同时支持 fetch、webCrypto、worker 等 Web 标准，也支持 、onunload、addEventListener
+        等事件操作函数。不像Node，Web API和Node的API不一致只会增加开发者的学习成本。
+    </p>
+    <p>
+        Deno只支持ES模块，跟浏览器的模块加载规则一致。既没有npm，也没有npm_modules这个无底洞，同时不支持CommonJS模块，也不需要package.json文件。所有模块通过URL加载，比如import vue
+        from "https://.vue.org"（ 绝对地址 ）或import vue from './vue.runtime.js'（ 相对地址 ）。因此，Deno
+        不需要一个中心化的模块储存系统，可以从任何地方加载模块。但是，Deno 下载模块以后，依然会有一个总的目录，在本地缓存模块，因此可以离线使用。也就是说其实还是有一个类似于npm_modules的文件夹。
+    </p>
+    <p>
+        (注：本文主要内容为转载，但知乎deno参与者justjavac声明了，目前deno已经支持npm，可能与不想放弃npm生态有关)
+    </p>
+    <h2>Deno的劣势</h2>
+    <p>
+        虽然这么一对比，感觉NodeJS完全不是对手，但是有一点是Deno暂时望尘莫及的，那就是巨大的生态。就像C#和Java一样，他们真的差距那么巨大吗？其实并没有吧，但是流行度差这么多有很多原因是因为生态。
+    </p>
+    <p>
+        Ryan说了，Deno现在不打算对Node做兼容处理，也就是说很多东西在Node能用但是在Deno上用不了，能不能真的干掉Node就要看广大造轮子爱好者们了，看看他们愿不愿意在Deno身上再造一个。
+    </p>
+    <a href="#">回到顶部</a>
+</body>
+
+</html>
